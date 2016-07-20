@@ -1,1 +1,1 @@
-from artifacia import Client
+from artifacia import client
