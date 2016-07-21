@@ -22,9 +22,9 @@ The API is really easy and simple to use. First you need to create an account [h
 
 ```python
 from artifacia import artifacia
-user_name = ''
-password = ''
-client = Artifacia.client(user_name, password)
+user_name = <your_username>
+password = <your_password>
+client = artifacia.Client(user_name, password)
 ```
 
 ### Creating your index
@@ -38,7 +38,7 @@ print data_indexing_response
 ```
 
 ### Performing Visual Recommendation
-Once you receive a notification form us about the status of the indexed data, you are ready to search. :simple_smile:
+Once you receive a notification form us about the status of the indexed data, you are ready to search.
 You can search for a product ID indexed in the sample data you inserted/uploaded.
 
 ```python
