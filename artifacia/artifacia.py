@@ -29,9 +29,8 @@ class Client:
 
         output: status for your request in json format
         """
-        for item in user_data:
-            response = requests.post('http://api.artifacia.com/v1/users', data=json.dumps(item), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
-            print json.loads(response.text)
+        response = requests.post('http://api.artifacia.com/v1/users', data=json.dumps(item), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        return json.loads(response.text)
 
     def upload_item_data(self, item_data):
         """
@@ -41,9 +40,8 @@ class Client:
 
         output : status for your request in json format
         """
-        for item in item_data:
-            response = requests.post('http://api.artifacia.com/v1/items', data=json.dumps(item), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
-            print json.loads(response.text)
+        response = requests.post('http://api.artifacia.com/v1/items', data=json.dumps(item), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        return json.loads(response.text)
 
     def delete_item_data(self, item_ids):
         """
@@ -54,8 +52,8 @@ class Client:
 
         output: status for your request in json format
         """
-        esponse = requests.delete('http://api.artifacia.com/v1/items', data=json.dumps(item_ids), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
-        print json.loads(response.text)
+        response = requests.delete('http://api.artifacia.com/v1/items', data=json.dumps(item_ids), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        return json.loads(response.text)
 
     def get_visual_recommendation(self, prod_id):
         """
@@ -66,7 +64,7 @@ class Client:
             return list of image item_ids
         """
         response = requests.get('http://api.artifacia.com/v1/recommendation/similar/' + str(prod_id), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
-        print json.loads(response.text)
+        return json.loads(response.text)
 
     def get_cpr_recommendation(self, prod_id):
         """
@@ -77,7 +75,7 @@ class Client:
             return list of product ids which can go with the given image
         """
         response = requests.get('http://api.artifacia.com/v1/recommendation/collections' + str(prod_id),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
-        print json.loads(response.text)
+        return json.loads(response.text)
 
     def get_smart_recommendation(self, user_id):
         """
@@ -88,4 +86,4 @@ class Client:
             list of prod_ids
         """
         response = requests.get('http://api.artifacia.com/v1/recommendation/user/' +str(user_id),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
-        print json.loads(response.text)
+        return json.loads(response.text)
