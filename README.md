@@ -18,7 +18,7 @@ pip install artifacia
 
 ## Getting Started
 
-The API is really easy and simple to use. First you need to create an account [here]() and there you will get a username and a password. Using that credentials you can create your constructor and get stated. 
+The API is really easy and simple to use. First you need to create an account [here]() and there you will get a username and a password. Using that credentials you can create your constructor and get stated.
 
 ```python
 from artifacia import artifacia
@@ -43,6 +43,6 @@ You can search for a product ID indexed in the sample data you inserted/uploaded
 
 ```python
 sample_prod_id = 2761
-query_response = client.get_visual_recommendations(sample_prod_id)
+query_response = client.get_visual_recommendation(sample_prod_id)
 print query_response
 ```
