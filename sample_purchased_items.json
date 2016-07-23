@@ -1,0 +1,19 @@
+{  
+   "purchased_items":[  
+      {  
+         "user_id":123,
+         "purchased_item_ids":[  
+            2,
+            3,
+            7
+         ]
+      },
+      {  
+         "user_id":456,
+         "purchased_item_ids":[  
+            34,
+            56
+         ]
+      }
+   ]
+}
