@@ -29,7 +29,7 @@ class Client:
 
         output: status for your request in json format
         """
-        response = requests.post('http://api.artifacia.com/v1/users', data=json.dumps(item), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.post('http://api.artifacia.com/v1/users', data=json.dumps(user_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
     def upload_item_data(self, item_data):
@@ -40,7 +40,7 @@ class Client:
 
         output : status for your request in json format
         """
-        response = requests.post('http://api.artifacia.com/v1/items', data=json.dumps(item), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.post('http://api.artifacia.com/v1/items', data=json.dumps(item_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
     def delete_item_data(self, item_ids):
@@ -74,7 +74,7 @@ class Client:
         output:
             return list of product ids which can go with the given image
         """
-        response = requests.get('http://api.artifacia.com/v1/recommendation/collections' + str(prod_id),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.get('http://api.artifacia.com/v1/recommendation/collections/' + str(prod_id),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
     def get_smart_recommendation(self, user_id):
