@@ -13,7 +13,7 @@ The wrapper allows you to create your own indexes of images on which you would l
 To install the package you can follow the steps:-
 
 ```python
-pip install artifacia
+[sudo] pip install artifacia
 ```
 
 ## Getting Started
