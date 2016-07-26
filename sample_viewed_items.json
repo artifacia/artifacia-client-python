@@ -1,19 +1,7 @@
-{  
-   "recently_viewed_items":[  
-      {  
-         "user_id":123,
-         "recently_viewed_item_ids":[  
-            2,
-            3,
-            7
-         ]
-      },
-      {  
-         "user_id":456,
-         "recently_viewed_item_ids":[  
-            34,
-            56
-         ]
-      }
+{
+   "recently_viewed_items":[
+      2,
+      3,
+      7
    ]
 }
