@@ -19,17 +19,30 @@ class Client:
         self.user = username
         self.passwd = password
 
-    def upload_user_data(self, user_data):
+    def upload_user_purchased_items(self, user_id ,user_data):
         """
         Input parameter :
             user_data which is list of json
 
         You can use this method with the username and password to upload your
-        user's interaction data like purchased items and viewed items
+        user's interaction data like purchased items
 
         output: status for your request in json format
         """
-        response = requests.post('http://api.artifacia.com/v1/users', data=json.dumps(user_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.post('http://api.artifacia.com/v1/users/'+str(user_id)+'/purchased_items', data=json.dumps(user_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        return json.loads(response.text)
+
+    def upload_user_viewed_items(self, user_id, user_data):
+        """
+        Input parameter :
+            user_data which is list of json
+
+        You can use this method with the username and password to upload your
+        user's interaction data like viewed items
+
+        output: status for your request in json format
+        """
+        response = requests.post('http://api.artifacia.com/v1/users'+str(user_id)+'/viewed_items', data=json.dumps(user_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
     def upload_item_data(self, item_data):
