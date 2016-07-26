@@ -2,4 +2,4 @@
 setup.cfg
 setup.py
 artifacia/__init__.py
-artifacia/client.py
+artifacia/artifacia.py
