@@ -2,7 +2,7 @@
 
 This python client is a simple wrapper around our powerful Visual Discovery [API](http://docs.artifacia.com/).
 
-The wrapper allows you to create your own indexes of images on which you would like to enhance the product discovery experiences. It also allows you to get various types of recommendations which are listed below.
+The wrapper allows you to create your own index of images on which you would like to enhance the product discovery experiences. It also allows you to get various types of recommendations which are listed below.
 
 * Visual Recommendation
 * Cross Product Recommendation
