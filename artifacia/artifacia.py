@@ -68,7 +68,7 @@ class Client:
         response = requests.delete('http://api.artifacia.com/v1/items', data=json.dumps(item_ids), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
-    def get_visual_recommendation(self, prod_id):
+    def get_visual_recommendation(self, prod_id, num):
         """
         Input parameter :
             prod_id which is an integer type
@@ -76,10 +76,10 @@ class Client:
         output :
             return list of image item_ids
         """
-        response = requests.get('http://api.artifacia.com/v1/recommendation/similar/' + str(prod_id), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.get('http://api.artifacia.com/v1/recommendation/similar/' + str(prod_id)+'/'+str(num), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
-    def get_cpr_recommendation(self, prod_id):
+    def get_cpr_recommendation(self, prod_id, num):
         """
         Input parameter :
             prod_id which is an integer type
@@ -87,10 +87,10 @@ class Client:
         output:
             return list of product ids which can go with the given image
         """
-        response = requests.get('http://api.artifacia.com/v1/recommendation/collections/' + str(prod_id),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.get('http://api.artifacia.com/v1/recommendation/collections/' + str(prod_id)+'/'+str(num),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
 
-    def get_smart_recommendation(self, user_id):
+    def get_personalized_recommendation(self, user_id, num):
         """
         Input parameter :
             user_id which is integer type
@@ -98,5 +98,5 @@ class Client:
         output:
             list of prod_ids
         """
-        response = requests.get('http://api.artifacia.com/v1/recommendation/user/' +str(user_id),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
+        response = requests.get('http://api.artifacia.com/v1/recommendation/user/' +str(user_id)+'/'+str(num),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'})
         return json.loads(response.text)
