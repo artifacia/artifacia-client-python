@@ -6,7 +6,7 @@ The wrapper allows you to create your own index of images on which you would lik
 
 * Visual Recommendation
 * Cross Product Recommendation
-* Smart Recommendation
+* Personalized Recommendation
 
 ## Installation
 
