@@ -8,7 +8,7 @@ class Client:
     client objent with your username and passwrod which you got from the dashboard.
     Now start using Artifacia recommendations APIS.
     """
-    def __init__(self, username, password):
+    def __init__(self, api_key):
         """
         Artifacia recommendation client initiallization
 
@@ -16,8 +16,7 @@ class Client:
         upload your data and get recommendations
 
         """
-        self.user = username
-        self.passwd = password
+        self.api_key = api_key
 
     def upload_user_purchased_items(self, user_id ,user_data):
         """
@@ -29,7 +28,7 @@ class Client:
 
         output: status for your request in json format
         """
-        response = requests.post('https://api.artifacia.com/v1/users/'+str(user_id)+'/purchased_items', data=json.dumps(user_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        response = requests.post('https://api.artifacia.com/v1/users/'+str(user_id)+'/purchased_items', data=json.dumps(user_data),  headers={'Content-Type':'application/json', 'api_key': self.api_key}, verify=False)
         return json.loads(response.text)
 
     def upload_user_viewed_items(self, user_id, user_data):
@@ -42,7 +41,7 @@ class Client:
 
         output: status for your request in json format
         """
-        response = requests.post('https://api.artifacia.com/v1/users'+str(user_id)+'/viewed_items', data=json.dumps(user_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        response = requests.post('https://api.artifacia.com/v1/users'+str(user_id)+'/viewed_items', data=json.dumps(user_data), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
     def upload_item_data(self, item_data):
@@ -53,7 +52,7 @@ class Client:
 
         output : status for your request in json format
         """
-        response = requests.post('https://api.artifacia.com/v1/items', data=json.dumps(item_data), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        response = requests.post('https://api.artifacia.com/v1/items', data=json.dumps(item_data), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
     def delete_item_data(self, item_ids):
@@ -65,10 +64,10 @@ class Client:
 
         output: status for your request in json format
         """
-        response = requests.delete('https://api.artifacia.com/v1/items', data=json.dumps(item_ids), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        response = requests.delete('https://api.artifacia.com/v1/items', data=json.dumps(item_ids), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
-    def get_visual_recommendation(self, prod_id, num):
+    def get_visual_recommendation(self, prod_id, num, filters):
         """
         Input parameter :
             prod_id which is an integer type
@@ -76,7 +75,10 @@ class Client:
         output :
             return list of image item_ids
         """
-        response = requests.get('https://api.artifacia.com/v1/recommendation/similar/' + str(prod_id)+'/'+str(num), auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        url = 'https://api.artifacia.com/v1/recommendation/similar/' + str(prod_id)+'/'+str(num) + "?"
+        for item in filters.keys():
+            url = "".join(url,item,"=",str(filters[item]))
+        response = requests.get(url, headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
     def get_cpr_recommendation(self, prod_id, num):
@@ -87,7 +89,7 @@ class Client:
         output:
             return list of product ids which can go with the given image
         """
-        response = requests.get('https://api.artifacia.com/v1/recommendation/collections/' + str(prod_id)+'/'+str(num),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        response = requests.get('https://api.artifacia.com/v1/recommendation/collections/' + str(prod_id)+'/'+str(num),  headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
     def get_personalized_recommendation(self, user_id, num):
@@ -98,5 +100,5 @@ class Client:
         output:
             list of prod_ids
         """
-        response = requests.get('https://api.artifacia.com/v1/recommendation/user/' +str(user_id)+'/'+str(num),  auth=(self.user, self.passwd), headers={'Content-Type':'application/json'}, verify=False)
+        response = requests.get('https://api.artifacia.com/v1/recommendation/user/' +str(user_id)+'/'+str(num), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
