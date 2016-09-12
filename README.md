@@ -39,11 +39,12 @@ print data_indexing_response
 
 ### Performing Visual Recommendation
 Once you receive a notification from us about the status of the indexed data, you are ready to search.
-You can search for a product ID indexed in the sample data you inserted/uploaded. And also specify the number of results you want to be returned.
+You can search for a product ID indexed in the sample data you inserted/uploaded. And also specify the number of results you want to be returned as well as attributes if want to proritize the result below is the example which you can refer.
 
 ```python
 sample_prod_id = 2761
 num = 4 
-query_response = client.get_visual_recommendation(sample_prod_id, num)
+filters = {"color":1, "pattern":1}
+query_response = client.get_visual_recommendation(sample_prod_id, num, filters)
 print query_response
 ```
