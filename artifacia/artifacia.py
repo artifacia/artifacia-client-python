@@ -41,7 +41,7 @@ class Client:
 
         output: status for your request in json format
         """
-        response = requests.post('https://api.artifacia.com/v1/users'+str(user_id)+'/viewed_items', data=json.dumps(user_data), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
+        response = requests.post('https://api.artifacia.com/v1/users/'+str(user_id)+'/viewed_items', data=json.dumps(user_data), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
     def upload_item_data(self, item_data):
