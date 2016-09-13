@@ -22,9 +22,8 @@ The API is really easy and simple to use. First you need to visit [this](http://
 
 ```python
 from artifacia import artifacia
-user_name = <your_username>
-password = <your_password>
-client = artifacia.Client(user_name, password)
+api_key = <your_api_key>
+client = artifacia.Client(api_key)
 ```
 
 ### Creating your index
@@ -43,7 +42,7 @@ You can search for a product ID indexed in the sample data you inserted/uploaded
 
 ```python
 sample_prod_id = 2761
-num = 4 
+num = 4
 filters = {"color":1, "pattern":1}
 query_response = client.get_visual_recommendation(sample_prod_id, num, filters)
 print query_response
