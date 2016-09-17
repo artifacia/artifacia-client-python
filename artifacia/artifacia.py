@@ -77,7 +77,7 @@ class Client:
         """
         url = 'https://api.artifacia.com/v1/recommendation/similar/' + str(prod_id)+'/'+str(num) + "?"
         for item in filters.keys():
-            url = "".join([url,item,"=",str(filters[item], "&")])
+            url = "".join([url,item,"=",str(filters[item]), "&"])
         response = requests.get(url, headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
