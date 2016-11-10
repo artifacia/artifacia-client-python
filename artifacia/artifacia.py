@@ -67,7 +67,7 @@ class Client:
         response = requests.delete('https://api.artifacia.com/v1/items', data=json.dumps(item_ids), headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
         return json.loads(response.text)
 
-    def get_visual_recommendation(self, prod_id, num, filters):
+    def get_visual_recommendation(self, prod_id, num, filters={}):
         """
         Input parameter :
             prod_id which is an integer type
@@ -75,10 +75,8 @@ class Client:
         output :
             return list of image item_ids
         """
-        url = 'https://api.artifacia.com/v1/recommendation/similar/' + str(prod_id)+'/'+str(num) + "?"
-        for item in filters.keys():
-            url = "".join([url,item,"=",str(filters[item]), "&"])
-        response = requests.get(url, headers={'Content-Type':'application/json', 'api_key':self.api_key}, verify=False)
+        url = 'https://api.artifacia.com/v1/recommendation/similar/' + str(prod_id)+'/'+str(num)
+        response = requests.post(url, headers={'Content-Type':'application/json', 'api_key':self.api_key}, data = json.dumps({"filters":filters}), verify=False)
         return json.loads(response.text)
 
     def get_cpr_recommendation(self, prod_id, num):
